@@ -2,75 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-            background: white;
-        }
-
-        .welcome {
-            background: white;
-            padding: 50px;
-            text-align: center;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-
-            width: 580px;
-            margin: 100px auto;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        p {
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            background: #667eea;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: black;
-        }
-    </style>
+    <title>Title</title>
 </head>
-
 <body>
+{% include 'header.html' %}
+<br><br><br><br><br><br><br><br>
+<div align="center">
+    <h1>Welcome to ORS App</h1>
 
-{% include "header.html" %}
+    {% if name == None %}
+    <h3>Hi, Guest</h3>
+    {% else %}
+    <h3>Hi, {{ name }}</h3>
+    {% endif %}
 
-    <div class="welcome">
-        <h1>Welcome !</h1>
-
-        <p>It's great to have you here.</p>
-
-        <button>Get Started</button>
-        {% if firstName == None %}
-        <h3>Welcome, Guest</h3>
-        {% else %}
-        <h3>Welcome, {{ firstName }}</h3>
-        {% endif %}
-    </div>
-
+</div>
 </body>
 </html>
