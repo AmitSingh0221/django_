@@ -29,16 +29,18 @@
             <th>Password</th>
             <th>DOB</th>
             <th>Address</th>
+            <th>Actions</th>
         </tr>
         {% for l in list %}
         <tr align="center">
-            <td>{{ l.id }}</td>
+            <td>{{ index|add:forloop.counter }}</td>
             <td>{{ l.first_name }}</td>
             <td>{{ l.last_name }}</td>
             <td>{{ l.login_id }}</td>
             <td>{{ l.password }}</td>
             <td>{{ l.dob }}</td>
             <td>{{ l.address }}</td>
+            <td><a href="/ors/edit/{{l.id}}/"><b>edit</b></a> <b>|</b> <a href="/ors/delete/{{l.id}}/"><b>delete</b></a></td>
         </tr>
         {% endfor %}
     </table>

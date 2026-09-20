@@ -83,4 +83,31 @@ def user_list(request):
 
     service = UserService()
     list = service.search(form)
-    return render(request, "user_list.html", {"list": list, 'page_no': form['page_no']})
+    index = (form['page_no'] - 1) * 5
+    return render(request, "user_list.html", {"list": list, 'page_no': form['page_no'], 'index': index})
+
+
+def delete_user(request, id=0):
+    service = UserService()
+    service.delete(id)
+    return redirect("/ors/list/")
+
+def user_save(request):
+    if request.method == "POST":
+        form = {}
+        form['first_name'] = request.POST.get('firstName')
+        form['last_name'] = request.POST.get('lastName')
+        form['login_id'] = request.POST.get('loginId')
+        form['password'] = request.POST.get('password')
+        form['dob'] = request.POST.get('dob')
+        form['address'] = request.POST.get('address')
+
+        service = UserService()
+        service.add(form)
+
+    return render(request, 'user.html')
+
+def edit_user(request, id=0):
+    service = UserService()
+    user_data = service.get(id)
+    return render(request, 'user.html', {'data': user_data[0]})
