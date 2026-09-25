@@ -31,16 +31,17 @@
             <th>Address</th>
             <th>Actions</th>
         </tr>
-        {% for l in list %}
+        {% for l in form.list %}
         <tr align="center">
-            <td>{{ index|add:forloop.counter }}</td>
+            <td>{{ form.index|add:forloop.counter }}</td>
             <td>{{ l.first_name }}</td>
             <td>{{ l.last_name }}</td>
             <td>{{ l.login_id }}</td>
             <td>{{ l.password }}</td>
             <td>{{ l.dob }}</td>
             <td>{{ l.address }}</td>
-            <td><a href="/ors/edit/{{l.id}}/"><b>edit</b></a> <b>|</b> <a href="/ors/delete/{{l.id}}/"><b>delete</b></a></td>
+            <td><a href="/ors/save/{{l.id}}/"><b>edit</b></a> <b>|</b> <a href="/ors/delete/{{l.id}}/"><b>delete</b></a>
+            </td>
         </tr>
         {% endfor %}
     </table>
@@ -48,15 +49,15 @@
     <table style="width: 100%">
         <tr>
             <td style="width: 25%">
-                <input type="submit" name="operation" value="previous" {% if page_no == 1 %} disabled {% endif %}>
+                <input type="submit" name="operation" value="previous" {% if form.has_previous %} disabled {% endif %}>
             </td>
             <td style="width: 75%"></td>
             <td>
-                <input type="submit" name="operation" value="next" {% if list|length < 5 %} disabled {% endif %}>
+                <input type="submit" name="operation" value="next" {% if form.has_next %} disabled {% endif %}>
             </td>
         </tr>
     </table>
-    <input type="hidden" name="pageNo" value="{{page_no}}">
+    <input type="hidden" name="pageNo" value="{{form.page_no}}">
 </form>
 </body>
 </html>
