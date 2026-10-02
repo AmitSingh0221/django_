@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% include 'header.html' %}
+<form method="POST">
+    {% csrf_token %}
+    <div align="center">
+        <h1>Role List</h1>
+    </div>
+    <div align="center">
+        <table>
+            <tr>
+                <th>Name:</th>
+                <td><input type="text" name="name" placeholder="enter name here"
+                           value="{{ form.name }}"></td>
+                <td><input type="submit" name="operation" value="search"></td>
+            </tr>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <table border="1" width="100%">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for l in form.list %}
+        <tr align="center">
+            <td>{{ form.index|add:forloop.counter }}</td>
+            <td align="center">{{ l.name }}</td>
+            <td align="center">{{ l.description }}</td
+            <td><a href="/ors/Role/edit/{{l.id}}/"><b>edit</b></a> <b>|</b> <a href="/ors/RoleList/delete/{{l.id}}/"><b>delete</b></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <table style="width: 100%">
+        <tr>
+            <td style="width: 25%">
+                <input type="submit" name="operation" value="previous" {% if not form.has_previous %} disabled {% endif %}>
+            </td>
+            <td style="width: 75%"></td>
+            <td>
+                <input type="submit" name="operation" value="next" {% if not form.has_next %} disabled {% endif %}>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="pageNo" value="{{form.page_no}}">
+</form>
+</body>
+</html>
