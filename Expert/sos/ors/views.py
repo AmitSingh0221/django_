@@ -4,6 +4,8 @@ from .ctl.registration_ctl import RegistrationCtl
 from .ctl.login_ctl import LoginCtl
 from .ctl.user_ctl import UserCtl
 from .ctl.user_list_ctl import UserListCtl
+from .ctl.role_ctl import RoleCtl
+from .ctl.role_list_ctl import RoleListCtl
 
 
 
@@ -22,6 +24,16 @@ def action(request, page):  # page = Registration
 
     if request.method == "GET":
         return ctl_obj.display(request)
+
+    if request.method == "POST":
+        return ctl_obj.submit(request)
+
+def action_operation_id(request, page, operation='', id=0):
+    ctl_name = page + "Ctl()"
+    ctl_obj = eval(ctl_name)
+
+    if request.method == "GET":
+        return ctl_obj.display(request, operation, id)
 
     if request.method == "POST":
         return ctl_obj.submit(request)

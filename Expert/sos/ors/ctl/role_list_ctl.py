@@ -16,7 +16,7 @@ class RoleListCtl:
         self.form['list'] = []
 
     def request_to_form(self,request):
-       self.form['first_name'] = request.POST.get('firstName')
+       self.form['name'] = request.POST.get('Name')
 
     def display(self,request,operation = '',id=0):
         if operation == 'delete':
